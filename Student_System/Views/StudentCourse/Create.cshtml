@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Student_System.StudentCourse>
+@using (Html.BeginForm())
+{
+
+<h2>Enroll Student In a Course</h2><br /><br />
+    <div class="form-group">
+    <label class="control-label col-md-2">Student Name:</label>
+        <div class="dropdown">
+
+            @*@Html.DropDownList(
+     "StudentId",
+     new SelectList(
+         Model.Select(x => new { Value = x.Student.Id, Text = x.Student.Fname + " " + x.Student.Lname }).Distinct(),
+         "Value",
+         "Text"
+     )
+ )*@
+            @Html.DropDownList("StudentId", new SelectList((System.Collections.IEnumerable)ViewData["studentList"], "Id", "Fname"))
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Course Name:</label>
+        <div class="dropdown">
+
+            @*@Html.DropDownList(
+         "Code",
+         new SelectList(
+             Model.Select(x => new { Value = x.Cours.Code, Text = x.Cours.Cname }).Distinct(),
+             "Value",
+             "Text"
+         )
+     )*@
+            @Html.DropDownList("Code", new SelectList((System.Collections.IEnumerable)ViewData["courseList"], "Code", "Cname"))
+            
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2"> Grade: </label>
+        <input id="Grade" name="Grade" type="text"/>
+
+    </div>
+
+<br /><br />    
+    <div class="form-group">
+        <div class="col-md-offset-2 ">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+
+
+<br />
+<br />
+}
+
+    @*<div class="dropdown">
+        <br /><br />
+        @Html.DropDownList(
+        "Foo",
+        new SelectList(
+            Model.Select(x => new { Value = x.Cours.Code, Text = x.Cours.Cname }).Distinct(),
+            "Value",
+            "Text"
+        )
+    )
+    </div>
+
+    <div class="dropdown">
+        <br /><br />
+        @Html.DropDownList(
+        "Foo",
+        new SelectList(
+            Model.Select(x => new { Value = x.Student.Id, Text = x.Student.Fname + " " + x.Student.Lname }).Distinct(),
+            "Value",
+            "Text"
+        )
+    )
+
+    </div>*@
+
+
+    @*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cours.Cname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student.Fname)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cours.Cname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.Fname)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }*@
+
+    @*</table>*@

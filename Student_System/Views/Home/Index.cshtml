@@ -1,0 +1,63 @@
+﻿<div style="font-family:Arial">
+    <script src="~/scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <div style="float: right;">
+    @Html.TextBox("Searching")
+        <input type="submit" value="Search" class="btn btn-default" id="txtnumber"/>
+    </div>
+
+    <script>
+        function checkSearchChanged() {
+
+            var currentValue = $('#txtnumber').val();
+            var ajaxMethodUrl = "/Home/SearchNumber?SearchKeyword=" + currentValue;
+            $("#txtnumber").autocomplete({
+                source: function (request, response) {
+                    var students = new Array();
+                    $.ajax({
+                        async: false,
+                        cache: false,
+                        type: "Get",
+                        url: ajaxMethodUrl,
+                        success: function (data) {
+
+                            for (var i = 0; i < data.length ; i++) {
+                                customer[i] = { label: data[i], Id: data[i] };
+                            }
+                        }
+                    });
+                    response(customer);
+                }
+            });
+        }
+    </script>
+    <h2>S</h2>
+    @Ajax.ActionLink("All Students", "All" ,"Student", new AjaxOptions
+    {
+    HttpMethod = "GET",
+    UpdateTargetId = "divData",
+    InsertionMode = InsertionMode.Replace
+    })
+    
+        <span style="color:blue;"> | </span>
+
+
+    @Ajax.ActionLink("All Courses", "All", "Course", new AjaxOptions
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "divData",
+    InsertionMode = InsertionMode.Replace
+})
+
+    @Ajax.ActionLink("Course Wise Students", "CourseWiseStudent", new AjaxOptions
+   {
+       HttpMethod = "GET",
+       UpdateTargetId = "divData",
+       InsertionMode = InsertionMode.Replace
+   })
+    <div id="divData"></div>
+
+</div>
+    
+

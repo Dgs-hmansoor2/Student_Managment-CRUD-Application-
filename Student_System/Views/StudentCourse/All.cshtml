@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Student_System.StudentCourse>
+<br /><br />
+
+<div style="float: right;">
+    @using (Html.BeginForm("Index", "StudentCourse", FormMethod.Get))
+    {
+        @Html.TextBox("Searching")
+        <input type="submit" value="Search" class="btn btn-default" />
+    }
+</div>
+<br />
+<p>
+    @Html.ActionLink("Enroll Student in a Course", "Create")
+</p>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cours.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cours.Cname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.Fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.Lname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cours.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cours.Cname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.Fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.Lname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grade)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Student.Id,code=item.Cours.Code})
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            @Html.ActionLink("Delete", "Delete", new { id = item.Student.Id, code = item.Cours.Code })
+        </td>
+    </tr>
+}
+
+</table>
